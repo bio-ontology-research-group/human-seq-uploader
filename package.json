@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "bootstrap": "^4.4.1",
+    "ekko-lightbox": "^5.3.0",
+    "highlight.js": "^10.2.1",
+    "jquery": "3",
+    "jquery-ui-dist": "^1.12.1",
+    "jquery.scrollto": "^2.1.2",
+    "popper.js": "^1.16.0",
+    "tus-js-client": "^2.2.0"
+  },
+  "name": "hsequploader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bio-ontology-research-group/human-seq-uploader.git",
+  "author": "Ali R. Syed <ali.syed@kaust.edu.sa>",
+  "license": "MIT"
+}

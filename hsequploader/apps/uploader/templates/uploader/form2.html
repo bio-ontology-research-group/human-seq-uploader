@@ -1,0 +1,95 @@
+{% extends 'uploader/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  {% csrf_token %}
+  {% load static %}
+      <h1>tus-js-client demo - File Upload</h1>
+
+      <p>
+        This demo shows the basic functionality of the tus protocol. You can select a file using the controls below and start/pause the upload as you wish.
+      </p>
+
+      <p>
+        For a prettier demo please go to the
+        <a href="http://tus.io/demo.html">tus.io</a> website.
+        This demo is just here to aid developers.
+      </p>
+
+      <p>
+        A demo where a video is recorded from your webcam while being simultaneously uploaded, can be found <a href="./video.html">here</a>.
+      </p>
+
+      <div class="alert alert-warining hidden" id="support-alert">
+        <b>Warning!</b> Your browser does not seem to support the features necessary to run tus-js-client. The buttons below may work but probably will fail silently.
+      </div>
+
+      <br />
+
+      <table>
+        <tr>
+          <td>
+            <label for="endpoint">
+              Upload endpoint:
+            </label>
+          </td>
+          <td>
+            <input type="text" id="endpoint" name="endpoint" value="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ request.GET.urlencode }}{% url 'tus_upload' %}">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="chunksize">
+              Chunk size (bytes):
+            </label>
+          </td>
+          <td>
+            <input type="number" id="chunksize" name="chunksize" value="5242880">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="paralleluploads">
+              Parallel upload requests:
+            </label>
+          </td>
+          <td>
+            <input type="number" id="paralleluploads" name="paralleluploads" value="1">
+          </td>
+        </tr>
+      </table>
+
+      <br />
+
+      <input type="file">
+
+      <br />
+      <br />
+
+      <div class="row">
+		<div class="col-10 progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+		</div>
+        <div class="span4">
+          <button class="btn stop" id="toggle-btn">start upload</button>
+        </div>
+      </div>
+
+      <hr />
+      <h3>Uploads</h3>
+      <p id="upload-list">
+        Succesful uploads will be listed here. Try one!
+      </p>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static "yarn/jquery/dist/jquery.min.js" %}"></script>
+<script src="{% static "yarn/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+<script src="{% static "yarn/jquery.scrollto/jquery.scrollTo.min.js" %}"></script>
+<script src="{% static "yarn/tus-js-client/dist/tus.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/hsequploader.js" %}">
+</script>
+{% endblock %}
